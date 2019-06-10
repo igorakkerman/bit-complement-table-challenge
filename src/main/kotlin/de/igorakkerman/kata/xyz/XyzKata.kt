@@ -4,17 +4,6 @@ import kotlin.math.pow
 
 class XyzKata {
 
-    fun sameCount(a: Array<IntArray>): Int {
-        return a.map { row ->
-            val first = row[0]
-            if (row.all { it == first }) 1 else 0
-        }
-            .reduce { x, y -> x + y }
-    }
-
-    infix fun Int.`**`(exponent: Int): Int =
-        toDouble().pow(exponent).toInt()
-
     fun solution(a: Array<IntArray>): Int {
 
         val rows = asNumbers(a)
