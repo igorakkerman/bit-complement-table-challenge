@@ -1,8 +1,13 @@
 package de.igorakkerman.kata.xyz
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertTimeout
+import org.junit.jupiter.api.Assertions.assertTimeoutPreemptively
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
+import java.math.BigInteger
+import java.math.BigInteger.*
+import java.time.Duration.ofSeconds
 
 internal class XyzKataTest {
 
@@ -136,26 +141,41 @@ internal class XyzKataTest {
             .isEqualTo(4)
     }
 
-    @Nested
-    inner class AllOnes {
-        @Test
-        internal fun `allOnes 0`() {
-            assertThat(kata.allOnes(0))
-                .isEqualTo(0)
-        }
+    @Test
+    internal fun `1000 x 100 - diagonal ones`() {
 
-        @Test
-        internal fun `allOnes 1`() {
-            assertThat(kata.allOnes(1))
-                .isEqualTo(1)
-        }
+        val a = Array(1_000, { row ->
+            IntArray(100, { column -> if (column == row) 1 else 0 })
+        })
 
-        @Test
-        internal fun `allOnes 2`() {
-            assertThat(kata.allOnes(2))
-                .isEqualTo(3)
-        }
+        val actualSolution = assertTimeoutPreemptively(ofSeconds(20000), {
+            kata.solution(a)
+        })
+
+        assertThat(actualSolution)
+            .isEqualTo(1)
     }
+
+//    @Nested
+//    inner class AllOnes {
+//        @Test
+//        internal fun `allOnes 0`() {
+//            assertThat(kata.allOnes(0))
+//                .isEqualTo(0)
+//        }
+//
+//        @Test
+//        internal fun `allOnes 1`() {
+//            assertThat(kata.allOnes(1))
+//                .isEqualTo(1)
+//        }
+//
+//        @Test
+//        internal fun `allOnes 2`() {
+//            assertThat(kata.allOnes(2))
+//                .isEqualTo(3)
+//        }
+//    }
 
     @Nested
     inner class AsNumbers {
@@ -166,7 +186,7 @@ internal class XyzKataTest {
                     intArrayOf(0)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(0)
+                .containsExactly(ZERO)
         }
 
         @Test
@@ -175,7 +195,7 @@ internal class XyzKataTest {
                     intArrayOf(0, 1)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(1)
+                .containsExactly(ONE)
         }
 
         @Test
@@ -184,7 +204,7 @@ internal class XyzKataTest {
                     intArrayOf(1, 0)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(2)
+                .containsExactly(TWO)
         }
 
         @Test
@@ -193,7 +213,7 @@ internal class XyzKataTest {
                     intArrayOf(1, 1, 0)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(6)
+                .containsExactly(valueOf(6))
         }
 
         @Test
@@ -203,7 +223,7 @@ internal class XyzKataTest {
                     intArrayOf(1)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(0, 1)
+                .containsExactly(ZERO, ONE)
         }
 
         @Test
@@ -213,7 +233,7 @@ internal class XyzKataTest {
                     intArrayOf(1, 0)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(1, 2)
+                .containsExactly(ONE, TWO)
         }
 
         @Test
@@ -223,7 +243,7 @@ internal class XyzKataTest {
                     intArrayOf(0, 1, 0)
             )
             assertThat(kata.asNumbers(a))
-                .containsExactly(6, 2)
+                .containsExactly(valueOf(6), TWO)
         }
 
     }
