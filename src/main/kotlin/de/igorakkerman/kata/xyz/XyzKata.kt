@@ -14,7 +14,7 @@ class XyzKata {
         return (allZeros..allOnes)
             .map { mask ->
                 rows.map { row -> row xor mask }
-                    .filter { row -> row.equals(allZeros) || row.equals(allOnes) }
+                    .filter { row -> row == allZeros || row == allOnes }
                     .count()
             }
             .max()!!
