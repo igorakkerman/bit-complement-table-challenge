@@ -148,12 +148,30 @@ internal class XyzKataTest {
             IntArray(100, { column -> if (column == row) 1 else 0 })
         })
 
-        val actualSolution = assertTimeoutPreemptively(ofSeconds(20000), {
-            kata.solution(a)
+        assertThat(kata.solution(a))
+            .isEqualTo(900)
+    }
+
+    @Test
+    internal fun `1 x 100_000 - diagonal ones`() {
+
+        val a = arrayOf(
+            IntArray(100_000) { it % 2 }
+        )
+
+        assertThat(kata.solution(a))
+            .isEqualTo(1)
+    }
+
+    @Test
+    internal fun `100_000 x 1 - diagonal ones`() {
+
+        val a = Array(100_000, {
+            intArrayOf(it % 2)
         })
 
-        assertThat(actualSolution)
-            .isEqualTo(1)
+        assertThat(kata.solution(a))
+            .isEqualTo(100_000)
     }
 
 //    @Nested

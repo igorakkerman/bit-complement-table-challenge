@@ -1,37 +1,27 @@
 package de.igorakkerman.kata.xyz
 
 import java.math.BigInteger
-import java.math.BigInteger.*
+import java.math.BigInteger.ONE
 
 class XyzKata {
 
+    private val TWO = BigInteger.valueOf(2)
+
     fun solution(a: Array<IntArray>): Int {
 
-        val rowValues = asNumbers(a)
-
-        val allZeros = ZERO
+        val counts = mutableMapOf<BigInteger, Int>()
         val allOnes = TWO.pow(a[0].size) - ONE
 
-//        println(allOnes)
+        for (rowValue in asNumbers(a))
+            counts[rowValue] = (counts[rowValue] ?: 0) + 1
 
-//        var count = 0
-
-        return generateSequence(allZeros, { v: BigInteger -> if (v != allOnes) v.inc() else null })
-            .map { mask ->
-                rowValues
-                    .asSequence()
-//                    .onEach { if (++ count % 100000 == 0) println(count) }
-                    .map { it xor mask }
-                    .filter { it == allZeros || it == allOnes }
-                    .count()
-            }
-            .max()!!
+        return counts.asSequence().map { it.value + (counts[allOnes.xor(it.key)] ?: 0) }.max()!!
     }
 
     internal fun asNumbers(a: Array<IntArray>): List<BigInteger> {
         return a.map { rowCells ->
             rowCells
-                .map { valueOf(it.toLong()) }
+                .map { BigInteger.valueOf(it.toLong()) }
                 .reduce { x: BigInteger, y: BigInteger -> TWO.times(x).plus(y) }
         }
     }
