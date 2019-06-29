@@ -167,25 +167,4 @@ internal class BitComplementTableKataTest {
         assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(100_000)
     }
-
-//    @Nested
-//    inner class AllOnes {
-//        @Test
-//        internal fun `allOnes 0`() {
-//            assertThat(kata.allOnes(0))
-//                .isEqualTo(0)
-//        }
-//
-//        @Test
-//        internal fun `allOnes 1`() {
-//            assertThat(kata.allOnes(1))
-//                .isEqualTo(1)
-//        }
-//
-//        @Test
-//        internal fun `allOnes 2`() {
-//            assertThat(kata.allOnes(2))
-//                .isEqualTo(3)
-//        }
-//    }
 }
