@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class BitComplementTableKataTest {
 
-    val kata = BitComplementTableKata()
+    private val kata = BitComplementTableKata()
 
     @Test
     internal fun `1x1`() {
@@ -138,9 +138,9 @@ internal class BitComplementTableKataTest {
     @Test
     internal fun `1000 x 100 - diagonal ones`() {
 
-        val a = Array(1_000, { row ->
-            IntArray(100, { column -> if (column == row) 1 else 0 })
-        })
+        val a = Array(1_000) { row ->
+            IntArray(100) { column -> if (column == row) 1 else 0 }
+        }
 
         assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(900)
@@ -160,9 +160,9 @@ internal class BitComplementTableKataTest {
     @Test
     internal fun `100_000 x 1 - diagonal ones`() {
 
-        val a = Array(100_000, {
+        val a = Array(100_000) {
             intArrayOf(it % 2)
-        })
+        }
 
         assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(100_000)
