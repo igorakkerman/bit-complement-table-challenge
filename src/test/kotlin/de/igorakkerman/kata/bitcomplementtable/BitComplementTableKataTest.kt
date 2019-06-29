@@ -1,21 +1,15 @@
-package de.igorakkerman.kata.xyz
+package de.igorakkerman.kata.bitcomplementtable
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertTimeout
-import org.junit.jupiter.api.Assertions.assertTimeoutPreemptively
-import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
-import java.math.BigInteger
-import java.math.BigInteger.*
-import java.time.Duration.ofSeconds
 
-internal class XyzKataTest {
+internal class BitComplementTableKataTest {
 
-    val kata = XyzKata()
+    val kata = BitComplementTableKata()
 
     @Test
     internal fun `1x1`() {
-        assertThat(kata.solution(arrayOf(intArrayOf(1))))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(arrayOf(intArrayOf(1))))
             .isEqualTo(1)
     }
 
@@ -26,7 +20,7 @@ internal class XyzKataTest {
                 intArrayOf(0)
         )
 
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(2)
     }
 
@@ -36,7 +30,7 @@ internal class XyzKataTest {
                 intArrayOf(1),
                 intArrayOf(1)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(2)
     }
 
@@ -46,7 +40,7 @@ internal class XyzKataTest {
                 intArrayOf(0),
                 intArrayOf(1)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(2)
     }
 
@@ -56,7 +50,7 @@ internal class XyzKataTest {
                 intArrayOf(1),
                 intArrayOf(0)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(2)
     }
 
@@ -65,7 +59,7 @@ internal class XyzKataTest {
         val a = arrayOf(
                 intArrayOf(0, 0)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(1)
     }
 
@@ -74,7 +68,7 @@ internal class XyzKataTest {
         val a = arrayOf(
                 intArrayOf(1, 1)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(1)
     }
 
@@ -83,7 +77,7 @@ internal class XyzKataTest {
         val a = arrayOf(
                 intArrayOf(0, 1)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(1)
     }
 
@@ -92,7 +86,7 @@ internal class XyzKataTest {
         val a = arrayOf(
                 intArrayOf(1, 0)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(1)
     }
 
@@ -103,7 +97,7 @@ internal class XyzKataTest {
                 intArrayOf(0, 1, 1, 0),
                 intArrayOf(1, 1, 0, 0)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(2)
     }
 
@@ -114,7 +108,7 @@ internal class XyzKataTest {
                 intArrayOf(0, 1, 0, 0),
                 intArrayOf(0, 0, 1, 0)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(1)
     }
 
@@ -125,7 +119,7 @@ internal class XyzKataTest {
                 intArrayOf(0, 1, 0, 0),
                 intArrayOf(1, 0, 1, 1)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(2)
     }
 
@@ -137,7 +131,7 @@ internal class XyzKataTest {
                 intArrayOf(0, 1, 0, 1),
                 intArrayOf(1, 0, 1, 0)
         )
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(4)
     }
 
@@ -148,7 +142,7 @@ internal class XyzKataTest {
             IntArray(100, { column -> if (column == row) 1 else 0 })
         })
 
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(900)
     }
 
@@ -159,7 +153,7 @@ internal class XyzKataTest {
             IntArray(100_000) { it % 2 }
         )
 
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(1)
     }
 
@@ -170,7 +164,7 @@ internal class XyzKataTest {
             intArrayOf(it % 2)
         })
 
-        assertThat(kata.solution(a))
+        assertThat(kata.maxRowsWithOnly0or1AfterColumnsComplement(a))
             .isEqualTo(100_000)
     }
 

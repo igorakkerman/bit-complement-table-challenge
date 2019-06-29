@@ -1,7 +1,7 @@
-package de.igorakkerman.kata.xyz
+package de.igorakkerman.kata.bitcomplementtable
 
-class XyzKata {
-    fun solution(a: Array<IntArray>): Int {
+class BitComplementTableKata {
+    fun maxRowsWithOnly0or1AfterColumnsComplement(a: Array<IntArray>): Int {
 
         val counts = mutableMapOf<List<Int>, Int>()
 
