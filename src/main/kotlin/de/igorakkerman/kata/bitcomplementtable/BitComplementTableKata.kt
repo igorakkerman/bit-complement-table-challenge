@@ -10,6 +10,8 @@ class BitComplementTableKata {
             counts[l] = (counts[l] ?: 0) + 1
         }
 
-        return counts.asSequence().map { it.value + (counts[it.key.map { bit -> bit xor 1 }] ?: 0) }.max()!!
+        return counts.asSequence().map { it.value + (counts[complementOf(row = it.key)] ?: 0) }.max()!!
     }
+
+    private fun complementOf(row: List<Int>) = row.map { bit -> bit xor 1 }
 }
